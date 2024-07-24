@@ -3,7 +3,7 @@ def main():
     text = get_book_text(book_path)
     num_words = word_count(text)
     print(f"{num_words} words found in the document")
-    print(letter_count(text))
+    print(letter_sort(letter_count(text)))
 
 def word_count(text):
     words = (text.split(None))
@@ -25,6 +25,16 @@ def letter_count(text):
                 letters[letter] = 1
     return letters
     
+def letter_sort(text):
+    sorted_list = []
+    for key in text:
+        if key.isalpha():
+            sorted_list.append({"character": key, "num": text[key]})
 
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
+
+def sort_on(dict):
+    return dict["num"]
 
 main()
